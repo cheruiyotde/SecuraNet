@@ -20,7 +20,7 @@ export default function Navbar({ sendWhatsApp }: NavbarProps) {
           {/* LOGO + BRAND */}
           <div className="flex items-center gap-3">
             <Image
-              src="/logo.png"
+              src="/icon.png"
               alt="SecuraNet Logo"
               width={70}
               height={70}
