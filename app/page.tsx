@@ -7,29 +7,26 @@ import Hero from "@/components/Hero";
 import CallButton from "@/components/CallButton";
 import Projects from "@/components/Projects";
 import Footer from "@/components/Footer";
+import { WhatsAppData } from "@/types/whatsapp";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
 
-  // ✅ FIXED: WhatsApp function (THIS WAS MISSING)
-  const sendWhatsApp = (data: {
-    name?: string;
-    phone?: string;
-    details?: string;
-  }) => {
+  // ✅ FIXED WhatsApp function
+  const sendWhatsApp = (data: WhatsAppData) => {
     const message =
-  `🔐 *NEW CCTV QUOTE REQUEST*%0A%0A` +
-  `👤 Name: ${data.name || "Not provided"}%0A` +
-  `📞 Phone: ${data.phone || "Not provided"}%0A` +
-  `📍 Location: ${data.location || "Not provided"}%0A` +
-  `🏢 Service Needed: ${data.service || "CCTV Installation"}%0A` +
-  `📝 Details: ${data.details || "Not provided"}%0A%0A` +
-  `— Sent from SecuraNet Website`;
+      `🔐 *NEW CCTV QUOTE REQUEST*%0A%0A` +
+      `👤 Name: ${data.name || "Not provided"}%0A` +
+      `📞 Phone: ${data.phone || "Not provided"}%0A` +
+      `📍 Location: ${data.location || "Not provided"}%0A` +
+      `🏢 Service Needed: ${data.service || "CCTV Installation"}%0A` +
+      `📝 Details: ${data.details || "Not provided"}%0A%0A` +
+      `— Sent from SecuraNet Website`;
 
-    const whatsappNumber = "254717552773"; // 🔴 CHANGE THIS
+    const whatsappNumber = "254717552773";
 
     window.open(
-      `https://wa.me/${whatsappNumber}?text=${message}`,
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
       "_blank"
     );
   };
@@ -161,6 +158,8 @@ export default function Home() {
             sendWhatsApp({
               name: "Website Visitor",
               phone: "",
+              location: "",
+              service: "CCTV Installation",
               details: "I want a CCTV installation quote"
             })
           }
@@ -171,7 +170,7 @@ export default function Home() {
 
       </section>
 
-      {/* MODAL (OPTIONAL - KEEP OR REMOVE) */}
+      {/* MODAL */}
       {open && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
 
