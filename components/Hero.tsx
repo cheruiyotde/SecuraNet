@@ -1,7 +1,12 @@
 "use client";
 import Image from "next/image";
+import { WhatsAppData } from "@/types/whatsapp";
 
-export default function Hero({ sendWhatsApp }) {
+type HeroProps = {
+  sendWhatsApp: (data: WhatsAppData) => void;
+};
+
+export default function Hero({ sendWhatsApp }: HeroProps) {
   return (
     <section id="home" className="bg-slate-900 text-white pt-28 pb-20">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">

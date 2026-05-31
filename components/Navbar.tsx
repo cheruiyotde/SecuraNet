@@ -2,8 +2,13 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { WhatsAppData } from "@/types/whatsapp";
 
-export default function Navbar({ sendWhatsApp }) {
+type NavbarProps = {
+  sendWhatsApp: (data: WhatsAppData) => void;
+};
+
+export default function Navbar({ sendWhatsApp }: NavbarProps) {
   const [open, setOpen] = useState(false);
 
   return (
